@@ -3,7 +3,7 @@
 Copy files to the sFlow-RT app directory and restart to install.
 
 Requires configuration of geo.country property:
-geo.country=resources/config/GeoIP.dat
+geo.country=resources/config/GeoLite2-Country.mmdb
 
 See System Property:
 http://sflow-rt.com/reference.php#properties
