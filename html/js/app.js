@@ -40,13 +40,11 @@ $(function() {
   $(window).resize(function() {
     if(map) map.resize();
   });
-  $(document).ready(function() {
-    map = new Datamap({
-      element:document.getElementById('container'),
-      responsive:true,
-      fills:{traffic:'red',defaultFill:'#cccccc'},
-      bubblesConfig:{animate:false}
-    });
-    pollStatus();
+  map = new Datamap({
+    element:document.getElementById('container'),
+    responsive:true,
+    fills:{traffic:'red',defaultFill:'#cccccc'},
+    bubblesConfig:{animate:false}
   });
+  pollStatus();
 });
