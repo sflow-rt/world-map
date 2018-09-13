@@ -1,6 +1,12 @@
 # Real-Time Traffic by Country
 
-Copy files to the sFlow-RT app directory and restart to install.
+Display map of the world with animated traffic.
+
+## To install
+
+1. [Download sFlow-RT](https://sflow-rt.com/download.php)
+2. Run command: `sflow-rt/get-app.sh sflow-rt world-map`
+3. Restart sFlow-RT
 
 Requires configuration of geo.country property:
 geo.country=resources/config/GeoLite2-Country.mmdb
