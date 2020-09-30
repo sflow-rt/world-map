@@ -1,16 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Real-time Traffic by Country</title>
-  <link rel="icon" type="image/png" href="../../../inc/img/favicon.png">
-  <script type="text/javascript" src="../../../inc/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.7/datamaps.world.hires.min.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
-</head>
-<body>
-  <div id="container" style="position: relative; height: 100%; width: 100%"></div>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="../../../inc/img/favicon.png">
+    <link rel="stylesheet" href="../../../inc/bootstrap.min.css">
+    <script type="text/javascript" src="../../../inc/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../inc/popper.min.js"></script>
+    <script type="text/javascript" src="../../../inc/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/topojson.min.js"></script>
+    <script type="text/javascript" src="js/datamaps.world.hires.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <title>Real-time Traffic by Country</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark mb-3" style="background-color: #336;">
+      <a class="navbar-brand" href="#">
+        <img src="../../../inc/img/inmon.svg" height="30" class="d-inline-block align-top">
+        Real-time Traffic by Country
+      </a>
+    </nav>
+    <main class="container-fluid" role="main">
+      <div id="container" style="position: relative; height: 100%; width: 100%"></div>
+    </main>
+    <footer class="footer page-footer border-top mt-3">
+       <div class="footer-copyright text-center py-2">
+         <small class="text-muted">Copyright &copy; 2020 InMon Corp. ALL RIGHTS RESERVED</small>
+       </div>
+    </footer>
+  </body>
 </html>

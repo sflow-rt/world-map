@@ -24,27 +24,25 @@ $(function() {
     }
     map.bubbles(bubbles);
   };
-  function pollStatus() {
-    $.ajax({
-      url: statusURL,
-      success: function(data) {
-        updateStatus(data);
-        setTimeout(pollStatus, 1000);
-      },
-      error: function(result,status,errorThrown) {
-        setTimeout(pollStatus, 2000);
-      },
-      timeout: 60000
-   });
-  } 
-  $(window).resize(function() {
-    if(map) map.resize();
-  });
   map = new Datamap({
     element:document.getElementById('container'),
     responsive:true,
     fills:{traffic:'red',defaultFill:'#cccccc'},
     bubblesConfig:{animate:false}
   });
-  pollStatus();
+  $(window).resize(function() {
+    map.resize();
+  });
+  (function pollStatus() {
+    $.ajax({
+      url: statusURL,
+      success: function(data) {
+        updateStatus(data);
+      },
+      complete: function(result,status,errorThrown) {
+        setTimeout(pollStatus, 1000);
+      },
+      timeout: 60000
+    });
+  })();
 });

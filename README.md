@@ -12,7 +12,7 @@ Requires configuration of geo.country property:
 geo.country=resources/config/GeoLite2-Country.mmdb
 
 See System Property:
-http://sflow-rt.com/reference.php#properties
+https://sflow-rt.com/reference.php#properties
 
 For more information, visit:
-http://www.sFlow-RT.com
+https://sFlow-RT.com
