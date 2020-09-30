@@ -39,7 +39,7 @@ $(function() {
       success: function(data) {
         updateStatus(data);
       },
-      complete: function(result,status,errorThrown) {
+      complete: function() {
         setTimeout(pollStatus, 1000);
       },
       timeout: 60000
