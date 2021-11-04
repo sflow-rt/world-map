@@ -1,8 +1,8 @@
 // author: InMon
-// version: 2.0
-// date: 9/30/2020
+// version: 3.0
+// date: 11/4/2021
 // description: Map traffic to countries
-// copyright: Copyright (c) 2016-2020 InMon Corp.
+// copyright: Copyright (c) 2016-2021 InMon Corp.
 
 var scale    = getSystemProperty('world-map.scale')    || 1;
 var aggMode  = getSystemProperty('world-map.aggMode')  || 'sum';
@@ -11,19 +11,41 @@ var minValue = getSystemProperty('world-map.minValue') || 0.01;
 var agents   = getSystemProperty('world-map.agents')   || 'ALL';
 var t        = getSystemProperty('world-map.t')        || 5;
 
-setFlow('world-map-src',{
-  keys:'country:ipsource',
-  value:'bytes',
-  n:20,
-  t:t});
-setFlow('world-map-dst',{
-  keys:'country:ipsource',
-  value:'bytes',
-  n:20,
-  t:t});
+function defineFlows() {
+  setFlow('world-map-src',{
+    keys:'if:[first:stack:.:ip:ip6]:ip:[country:ipsource]:[country:ip6source]',
+    value:'bytes',
+    n:20,
+    t:t});
+  setFlow('world-map-dst',{
+    keys:'if:[first:stack:.:ip:ip6]:ip:[country:ipdestination]:[country:ip6destination]',
+    value:'bytes',
+    n:20,
+    t:t});
+}
+
+function clearFlows() {
+  clearFlow('world-map-src');
+  clearFlow('world-map-dst');
+}
+
+lastQueryTime = 0;
+flowsDefined = false;
+setIntervalHandler(function(now) {
+  if(flowsDefined && now - lastQueryTime > 60000) {
+    clearFlows();
+    flowsDefined = false;
+  }
+});
 
 setHttpHandler(function(req) {
   var cc, result = [], totals = {};
+  if(!flowsDefined) {
+    defineFlows();
+    flowsDefined = true;
+  }
+  lastQueryTime = Date.now();
+
   (activeFlows(agents,'world-map-src',maxFlows,minValue,aggMode) || []).forEach(el => totals[el.key] = (totals[el.key] || 0) + el.value);
   (activeFlows(agents,'world-map-dst',maxFlows,minValue,aggMode) || []).forEach(el => totals[el.key] = (totals[el.key] || 0) + el.value);
   for(cc in totals) {
