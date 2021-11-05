@@ -67,23 +67,10 @@ $(function() {
     });
   });
   
-  $(map.svg[0][0]).on('click', '.bubbles', function(e) {
-    var info = e.target.dataset.info;
-    if(info) {
-      var cc3 = JSON.parse(info).centered;
-      var selected;
-      for(var cc2 in cc2to3) {
-        if(cc3 === cc2to3[cc2]) {
-          selected = cc2.toUpperCase();;
-          break; 
-        } 
-      }
-      console.log(selected);
-    }
-  });
   $(window).resize(function() {
     map.resize();
   });
+
   (function pollStatus() {
     $.ajax({
       url: statusURL,
