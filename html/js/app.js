@@ -15,6 +15,13 @@ $(function() {
     cc3toname[countries[i].id] = countries[i].properties.name;
   }
 
+  map = new Datamap({
+    element:document.getElementById('container'),
+    responsive:true,
+    fills:{traffic:'red',defaultFill:'#cccccc'},
+    bubblesConfig:{animate:false}
+  });
+
   function updateStatus(data) {
     var bubbles = [];
     for(var i = 0; i < data.length; i++) {
@@ -32,13 +39,6 @@ $(function() {
     }
     map.bubbles(bubbles);
   };
-
-  map = new Datamap({
-    element:document.getElementById('container'),
-    responsive:true,
-    fills:{traffic:'red',defaultFill:'#cccccc'},
-    bubblesConfig:{animate:false}
-  });
 
   function openBrowseFlowsLink(cc) {
     var keys = 'if:[first:stack:.:ip:ip6]:ip:ipsource:ip6source';
