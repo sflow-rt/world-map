@@ -23,6 +23,7 @@ $(function() {
   });
 
   function updateStatus(data) {
+    d3.selectAll("circle").remove();
     var bubbles = [];
     for(var i = 0; i < data.length; i++) {
       var entry = data[i];
